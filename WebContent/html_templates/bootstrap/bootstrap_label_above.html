@@ -1,0 +1,275 @@
+<html>
+<body>
+  <styleSheet name="StyleSheetHint">http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css</styleSheet>
+  <styleSheet name="DesignViewStyleSheet">http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css</styleSheet>
+
+ 
+  <div name="DisplayPageWrapper"  class="pageWrapper">
+    <HTMLWRAPPER name="PageContentsContainer" />
+  </div>
+  
+  <div name="DataEntryPageWrapper"  class="pageWrapper">
+    <HTMLWRAPPER name="PageContentsContainer" />
+  </div>
+
+
+  <div name="TOCDisplayGroupWrapper" class="TOCGroup">
+    <div name="LabelContainer" class="TOCGroupLabel"/>    
+    <HTMLWRAPPER name="GroupContainer" />    
+  </div>
+  
+  <div name="TOCDataEntryGroupWrapper" class="TOCGroup">
+    <div name="LabelContainer" class="TOCGroupLabel"/>    
+    <HTMLWRAPPER name="GroupContainer" />    
+  </div>
+
+  <div name="OuterDisplayGroupWrapper" class="OuterGroup">
+    <div name="LabelContainer" class="OuterGroupLabel"/>    
+    <HTMLWRAPPER name="GroupContainer" />    
+  </div>
+
+  <div name="OuterDataEntryGroupWrapper" class="OuterGroup">
+    <div name="LabelContainer" class="OuterGroupLabel"/>    
+    <HTMLWRAPPER name="GroupContainer" />    
+  </div>
+
+  <fieldset name="DisplayGroupWrapper" class="DisplayGroupFieldset">
+       <legend name="LabelContainer" class="legend"/>
+       <HTMLWRAPPER name="GroupContainer"/>
+  </fieldset>
+
+  <fieldset name="DataEntryGroupWrapper" class="DataEntryGroupFieldset">
+       <legend name="LabelContainer" class="legend"/>
+       <HTMLWRAPPER name="GroupContainer" />
+  </fieldset>
+
+  <HTMLWRAPPER name="DisplayGroup">
+    <HTMLWRAPPER name="DataContainer" />
+  </HTMLWRAPPER>
+
+   <div  name="DisplayGroupLabel"  class="sectionLabel">
+     <span name="LabelText"  class="sectionLabel" />
+   </div>
+
+   <HTMLWRAPPER  name="DataEntryGroupLabel"  class="sectionLabel">
+     <span name="LabelText"  class="sectionLabel" />
+   </HTMLWRAPPER>
+
+   <div  name="TableLabel"  class="sectionLabel">
+     <span name="LabelText"  class="sectionLabel" />
+   </div>
+
+
+  <div name="DisplayField" class="form-group">
+    <label name="FieldLabel">Field Label</label>
+    <span name="FieldElement" class="outputData" id="_field"/>
+  </div>
+
+  <fieldset name="TopDisplayField"  class="DisplayGroupFieldset">
+    <div  class="FieldWrapperDiv">
+      <label><span name="FieldLabel" class="label">Field Label</span></label>
+      <span name="FieldElement" class="outputData" id="_field"/>
+    </div>
+  </fieldset>
+
+  <HTMLWRAPPER name="DataEntryGroup">
+    <HTMLWRAPPER name="DataContainer">
+	  <div name="DataEntryField" class="form-group">
+	     <label name="FieldLabel" for="_field"></label>
+	     <input name="FieldElement" id="_field" class="form-control">
+	  </div>   
+	</HTMLWRAPPER>
+  </HTMLWRAPPER>
+
+  <HTMLWRAPPER name="DataEntryGroup">
+    <HTMLWRAPPER name="DataContainer">
+      <div name="DataEntryField_checkbox" class="checkbox">
+         <input name="FieldElement" id="_field">
+         <label name="FieldLabel" for="_field"></label>
+      </div>   
+    </HTMLWRAPPER>
+  </HTMLWRAPPER>
+
+  <div name="TopTableWrapper" class="vf_fields">
+    <div name="LabelContainer" class="TableLabel"/>    
+    <HTMLWRAPPER name="_tableAndButton">
+      <div name="GroupContainer" />
+      <span name="_buttonSpace" />
+      <HTMLWRAPPER name="EmptyDataContainer">
+        <div name="EmptyDataMessage" class="EmptyDataMessage" />
+      </HTMLWRAPPER>
+    </HTMLWRAPPER>
+  </div>
+
+  <HTMLWRAPPER name="TableWrapper">
+    <div name="LabelContainer" class="TableLabel"/>    
+    <HTMLWRAPPER name="_tableAndButton">
+      <div name="GroupContainer" />
+      <span name="_buttonSpace" />
+      <HTMLWRAPPER name="EmptyDataContainer">
+        <div name="EmptyDataMessage" class="EmptyDataMessage" />
+      </HTMLWRAPPER>
+    </HTMLWRAPPER>
+  </HTMLWRAPPER>
+
+  <table name="Table" id="_table" width="100%" class="table table-striped table-hover" >
+    <tr name="OptionalColumnGroupHeaderContainer"  class="columnGroupHeadRow"/>
+    <tr  name="TableHeaderContainer" class="tableHeadRow" >
+      <!-- Generic column header -->
+      <th scope="col" name="ColumnHeader" class="tableHead" nowrap ><span name="HeaderElement" class="tableHeadText">Header</span></th>
+      <!-- Sorted column header- useful for applying correct style to sorting link -->
+      <th scope="col" name="ColumnHeaderSorted" class="tableHead" nowrap ><a href="#" name="HeaderElement" class="tableHeadSortLink">Header Sorted</a></th>
+      <!-- These columns are specifically for Details,Edit and Delete and provide centering and the right style -->
+      <th scope="col" name="ColumnHeaderByName_Details" width="50" class="tableHead" align="center" nowrap><span name="HeaderElement" class="tableHeadText" >Details</span></th>
+      <th scope="col" name="ColumnHeaderByName_Edit" width="50" class="tableHead" align="center" nowrap><span name="HeaderElement" class="tableHeadText" >Edit</span></th>
+      <th scope="col" name="ColumnHeaderByName_Delete" width="50" class="tableHead" align="center" nowrap><span name="HeaderElement" class="tableHeadText" >Delete</span></th>
+      <!-- This column is more general for any columns where the field is made into a button, for example auto delete, but only where data field modifiers make the column a button -->
+      <th scope="col" name="ColumnHeader_button" class="tableHead" align="center" nowrap><span name="HeaderElement" class="tableHeadText" >Auto Delete</span></th>
+      <!-- These columns are specifically for decimal values and provide centering and the right style -->
+      <th scope="col" name="ColumnHeader_decimal" class="tableHead" align="center" nowrap><span name="HeaderElement" class="tableHeadText" >Decimal</span></th>
+      <th scope="col" name="ColumnHeaderSorted_decimal" class="tableHead" align="center" nowrap><a name="HeaderElement" class="tableHeadSortLink" >Decimal Sorted</a></th>
+      <!-- These columns are specifically for dates and provide centering and the right style -->
+      <th scope="col" name="ColumnHeader_integer" class="tableHead" align="center" nowrap><span name="HeaderElement" class="tableHeadText" >Integer</span></th>
+      <th scope="col" name="ColumnHeaderSorted_integer" class="tableHead" align="center" nowrap><a name="HeaderElement" class="tableHeadSortLink" >Integer Sorted</a></th>
+      <th scope="col" name="ColumnHeader_int" class="tableHead" align="center" nowrap><span name="HeaderElement" class="tableHeadText" >Integer</span></th>
+      <th scope="col" name="ColumnHeaderSorted_int" class="tableHead" align="center" nowrap><a name="HeaderElement" class="tableHeadSortLink" >Integer Sorted</a></th>
+      <th scope="col" name="ColumnHeader_float" class="tableHead" align="center" nowrap><span name="HeaderElement" class="tableHeadText" >Integer</span></th>
+      <th scope="col" name="ColumnHeaderSorted_float" class="tableHead" align="center" nowrap><a name="HeaderElement" class="tableHeadSortLink" >Integer Sorted</a></th>
+      <th scope="col" name="ColumnHeader_double" class="tableHead" align="center" nowrap><span name="HeaderElement" class="tableHeadText" >Integer</span></th>
+      <th scope="col" name="ColumnHeaderSorted_double" class="tableHead" align="center" nowrap><a name="HeaderElement" class="tableHeadSortLink" >Integer Sorted</a></th>
+      <th scope="col" name="ColumnHeader_date" class="tableHead" align="center" nowrap><span name="HeaderElement" class="tableHeadText" >Date</span></th>
+      <th scope="col" name="ColumnHeaderSorted_date" class="tableHead" align="center" nowrap><a name="HeaderElement" class="tableHeadSortLink" >Date Sorted</a></th>
+      <th scope="col" name="ColumnHeader_year" class="tableHead" align="center" nowrap><span name="HeaderElement" class="tableHeadText" >Year</span></th>
+      <th scope="col" name="ColumnHeaderSorted_year" class="tableHead" align="center" nowrap><a name="HeaderElement" class="tableHeadSortLink" >Year Sorted</a></th>
+      <HTMLWRAPPER name="ColumnGroupHeader">
+        <td class="spacerColumnGroupHeader"><img src="phony.gif" width="1" height="1" border="0" /></td>
+        <td name="ColumnGroupHeaderCell" colspan_multiplier="1" colspan_additional="1" align="center" class="ColumnGroupLabel">
+          <span name="HeaderElement"></span>
+        </td>
+      </HTMLWRAPPER>
+      <HTMLWRAPPER name="ColumnGroupHeaderEmpty">
+        <td name="ColumnGroupHeaderCell" colspan_multiplier="1" colspan_additional="0" align="center" class="ColumnGroupLabelEmpty">&nbsp;
+          <span name="HeaderElement"></span>
+        </td>
+      </HTMLWRAPPER>
+      <HTMLWRAPPER name="ColumnGroupSubHeaderWrapper">
+        <td class="spacerColumn"><img src="phony.gif" width="1" height="1" border="0" /></td>
+        <HTMLWRAPPER name="TableHeaderContainer" />
+      </HTMLWRAPPER>
+      <HTMLWRAPPER name="ColumnGroupSubHeaderWrapperEmpty">
+        <HTMLWRAPPER name="TableHeaderContainer" />
+      </HTMLWRAPPER>
+      <HTMLWRAPPER name="ColumnGroupContentsWrapper">
+         <td class="spacerColumn"><img src="phony.gif" width="1" height="1" border="0" /></td>
+         <HTMLWRAPPER name="DataContainer" />
+      </HTMLWRAPPER>
+      <HTMLWRAPPER name="ColumnGroupContentsWrapperEmpty">
+        <HTMLWRAPPER name="DataContainer" />
+      </HTMLWRAPPER>
+    </tr><!-- End: table header row -->
+    <!-- Begin: repeated data rows -->
+    <HTMLWRAPPER name="RepeatElement">
+    <tr name="DataContainer" sequence_class="tableRowOdd,tableRowEven" >
+      <!-- Cells that match the above header columns.  No special treatment for sorted cells. -->
+      <td name="ColumnData" valign="top" class="tableCell"  ><span name="FieldElement" class="outputData"></span><span name="FieldValidationError" class="ValidationErrorText" /></td>
+      <td name="ColumnDataByName_Details" class="outputData tableCell" valign="top" align="center" ><span name="FieldElement" class="actionButton"></span></td>
+      <td name="ColumnDataByName_Edit" class="outputData tableCell" valign="top" align="center" ><span name="FieldElement" class="actionButton"></span></td>
+      <td name="ColumnDataByName_Delete" class="outputData tableCell" valign="top" align="center" ><span name="FieldElement" class="actionButton"></span></td>
+      <td name="ColumnData_button" class="outputData tableCell" valign="top" align="center" ><span name="FieldElement" class="actionButton">Button</span></td>
+      <td name="ColumnData_decimal" class="outputDataRight tableCell" valign="top" align="right" nowrap ><span name="FieldElement">Decimal</span><span name="FieldValidationError" class="ValidationErrorText" /></td>
+      <td name="ColumnData_integer" valign="top"  class="outputDataRight tableCell" ><span name="FieldElement" class="outputDataRight" nowrap>Integer</span><span name="FieldValidationError" class="ValidationErrorText" /></td>
+      <td name="ColumnData_int" valign="top" class="outputDataRight tableCell" ><span name="FieldElement" class="outputDataRight" nowrap>Integer</span><span name="FieldValidationError" class="ValidationErrorText" /></td>
+      <td name="ColumnData_float" valign="top" class="outputDataRight tableCell" ><span name="FieldElement" class="outputDataRight" nowrap>Integer</span><span name="FieldValidationError" class="ValidationErrorText" /></td>
+      <td name="ColumnData_double" valign="top" class="outputDataRight tableCell" ><span name="FieldElement" class="outputDataRight" nowrap>Integer</span><span name="FieldValidationError" class="ValidationErrorText" /></td>
+      <td name="ColumnData_date" valign="top" align="center" class="tableCell" ><span name="FieldElement" class="outputData" nowrap>Date</span><span name="FieldValidationError" class="ValidationErrorText" /></td>
+      <td name="ColumnData_year" valign="top" align="center" class="tableCell" ><span name="FieldElement" class="outputData" nowrap>Year</span><span name="FieldValidationError" class="ValidationErrorText" /></td>
+      <td name="ColumnData_checkbox" valign="top" align="center" class="tableCell" ><span name="FieldElement" class="outputData" nowrap>cb</span></td>
+    </tr>
+    </HTMLWRAPPER><!-- End: repeated data rows -->
+    <tr name="SummaryContainer" class="tableSummaryRow" >
+      <td name="ColumnSummary" valign="top"  ><span name="DataElement" class="outputData" ></span></td>
+      <td name="ColumnSummary_button" class="outputData" valign="top" align="center" ><span name="DataElement" class="actionButton"></span></td>
+      <td name="ColumnSummary_decimal" class="outputData" valign="top" align="right" nowrap ><span name="DataElement"></span></td>
+      <td name="ColumnSummary_integer" valign="top"  class="outputDataRight" ><span name="DataElement" class="outputDataRight" nowrap></span></td>
+      <td name="ColumnSummary_int" valign="top" class="outputDataRight" ><span name="DataElement" class="outputDataRight" nowrap></span></td>
+      <td name="ColumnSummary_float" valign="top" class="outputDataRight" ><span name="DataElement" class="outputDataRight" nowrap></span></td>
+      <td name="ColumnSummary_double" valign="top" class="outputDataRight" ><span name="DataElement" class="outputDataRight" nowrap></span></td>
+      <td name="ColumnSummary_date" valign="top" align="center" ><span name="DataElement" class="outputData" nowrap></span></td>
+      <td name="ColumnSummary_year" valign="top" align="center" ><span name="DataElement" class="outputData" nowrap></span></td>
+    </tr>
+  </table><!-- End: Table -->
+
+  <HTMLWRAPPER name="OuterDisplayGroup_NewsColumnBase">
+    <div class="NewsColumnWrapper" >
+      <HTMLWRAPPER name="DataContainer" />
+    </div>
+  </HTMLWRAPPER>
+
+  <HTMLWRAPPER name="DisplayGroupWrapper_NewsColumnCell" >
+    <div class="NewsColumnCell">  
+      <fieldset class="DisplayGroupFieldset">
+        <legend name="LabelContainer" class="legend"/>
+        <HTMLWRAPPER name="GroupContainer" />
+      </fieldset>
+    </div>
+  </HTMLWRAPPER>
+
+  <HTMLWRAPPER name="OuterDataEntryGroup_NewsColumnBase">
+    <div class="NewsColumnWrapper" >
+      <HTMLWRAPPER name="DataContainer" />
+    </div>
+  </HTMLWRAPPER>
+
+  <HTMLWRAPPER name="DataEntryGroupWrapper_NewsColumnCell" >
+    <div class="NewsColumnCell">  
+      <fieldset class="DisplayGroupFieldset">
+        <legend name="LabelContainer" class="legend"/>
+        <HTMLWRAPPER name="GroupContainer" />
+      </fieldset>
+    </div>
+  </HTMLWRAPPER>
+
+  <HTMLWRAPPER name="DisplayGroupWrapper_LayoutGrid">
+    <div class="NewsColumnWrapper" >
+      <HTMLWRAPPER name="DataContainer" />
+    </div>
+  </HTMLWRAPPER>
+  
+  <HTMLWRAPPER name="DisplayGroupWrapper_LayoutRow">
+    <div class="NewsColumnWrapper" >
+      <HTMLWRAPPER name="DataContainer" />
+    </div>
+  </HTMLWRAPPER>
+  
+  <HTMLWRAPPER name="DisplayGroupWrapper_LayoutColumn" >
+    <div class="NewsColumnCell">  
+      <HTMLWRAPPER class="DisplayGroupFieldset">
+        <div name="LabelContainer" class="LayoutColumnGroupLabel"/>
+        <div name="GroupContainer" class="LayoutColumnGroupDiv"/>
+      </HTMLWRAPPER>
+    </div>
+  </HTMLWRAPPER>
+  
+  <HTMLWRAPPER name="DataEntryGroupWrapper_LayoutGrid">
+    <div class="NewsColumnWrapper" >
+      <HTMLWRAPPER name="DataContainer" />
+    </div>
+  </HTMLWRAPPER>
+  
+  <HTMLWRAPPER name="DataEntryGroupWrapper_LayoutRow">
+    <div class="NewsColumnWrapper" >
+      <HTMLWRAPPER name="DataContainer" />
+    </div>
+  </HTMLWRAPPER>
+  
+    <HTMLWRAPPER name="DataEntryGroupWrapper_LayoutColumn" >
+    <div class="NewsColumnCell">  
+      <HTMLWRAPPER class="DisplayGroupFieldset">
+        <div name="LabelContainer" class="LayoutColumnGroupLabel"/>
+        <div name="GroupContainer" class="LayoutColumnGroupDiv"/>
+      </HTMLWRAPPER>
+    </div>
+  </HTMLWRAPPER>
+
+</body>
+</HTML>

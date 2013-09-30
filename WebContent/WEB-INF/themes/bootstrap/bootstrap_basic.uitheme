@@ -1,0 +1,72 @@
+<!--  **************************  Basic Bootstrap Theme **********************************
+ 
+ -->
+<Theme extends="/WEB-INF/factory/themes/wpfbase.uitheme">
+  
+    <DataPage_HTMLTemplate>html_templates/bootstrap/bootstrap_label_above.html</DataPage_HTMLTemplate>
+  
+  
+    <DefaultRDD>/WEB-INF/rich_data_definitions/bootstrap/basic_bootstrap_datadef.xml</DefaultRDD>
+
+    <Add_Default_Progress_Indicator>false</Add_Default_Progress_Indicator>
+ 
+    <Use_Smart_Refresh>false</Use_Smart_Refresh>
+  
+    <DojoEnable_DisableThemeCSS>true</DojoEnable_DisableThemeCSS>
+    
+    
+    <DSUI_StyleSheetOverride>http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css</DSUI_StyleSheetOverride>
+
+    <DSUI_CreatePageStyleSheetOverride>none</DSUI_CreatePageStyleSheetOverride>
+    <DSUI_UpdatePageStyleSheetOverride>none</DSUI_UpdatePageStyleSheetOverride>
+    <DSUI_DetailsPageStyleSheetOverride>none</DSUI_DetailsPageStyleSheetOverride>
+    <DSUI_QueryPageStyleSheetOverride>none</DSUI_QueryPageStyleSheetOverride>
+    <DSUI_SearchPageStyleSheetOverride>none</DSUI_SearchPageStyleSheetOverride>
+    <DSUI_FilterPageStyleSheetOverride>none</DSUI_FilterPageStyleSheetOverride>
+    <DSUI_ListPageStyleSheetOverride>none</DSUI_ListPageStyleSheetOverride>
+    
+    
+    <DSUI_DojoColumnResizeAndReorderOnList>false</DSUI_DojoColumnResizeAndReorderOnList>
+    <DSUI_DojoColumnResizeAndReorderOnResults>false</DSUI_DojoColumnResizeAndReorderOnResults>
+    <DSUI_EnableRowHighlightingOnList>false</DSUI_EnableRowHighlightingOnList>
+    <DSUI_EnableRowHighlightingOnResults>false</DSUI_EnableRowHighlightingOnResults>
+    <DSUI_StyleSheetOverride>none</DSUI_StyleSheetOverride>
+    <DSUI_HTMLTemplate>html_templates/bootstrap/bootstrap_label_above.html</DSUI_HTMLTemplate>
+ 
+    <DSUI_CreatePageHTMLTemplate>html_templates/bootstrap/bootstrap_label_above.html</DSUI_CreatePageHTMLTemplate>
+    <DSUI_CreatePageHTML>/pages/bootstrap/dsui/create.html</DSUI_CreatePageHTML>
+    <DSUI_CreatePageStyleSheetOverride>none</DSUI_CreatePageStyleSheetOverride>
+ 
+    <DSUI_UpdatePageHTMLTemplate>html_templates/bootstrap/bootstrap_label_above.html</DSUI_UpdatePageHTMLTemplate>
+    <DSUI_UpdatePageHTML>/pages/bootstrap/dsui/update.html</DSUI_UpdatePageHTML>
+    <DSUI_UpdatePageStyleSheetOverride>none</DSUI_UpdatePageStyleSheetOverride>
+ 
+    <DSUI_DetailsPageHTMLTemplate>html_templates/bootstrap/bootstrap_label_above.html</DSUI_DetailsPageHTMLTemplate>
+    <DSUI_DetailsPageHTML>/pages/bootstrap/dsui/details.html</DSUI_DetailsPageHTML>
+    <DSUI_DetailsPageStyleSheetOverride>none</DSUI_DetailsPageStyleSheetOverride>
+ 
+    <DSUI_NoDetailsYetPageHTML>/factory/pages/mobile/dsui/no_details_yet.html</DSUI_NoDetailsYetPageHTML>
+
+    <DSUI_QueryPageHTML>/pages/bootstrap/dsui/query.html</DSUI_QueryPageHTML>
+    <DSUI_QueryPageStyleSheetOverride>none</DSUI_QueryPageStyleSheetOverride>
+
+    <DSUI_SearchResultsPageHTML>/pages/bootstrap/dsui/search_results.html</DSUI_SearchResultsPageHTML>
+    <DSUI_SearchPageStyleSheetOverride>none</DSUI_SearchPageStyleSheetOverride>
+
+    <DSUI_FilterPageHTMLTemplate>html_templates/bootstrap/bootstrap_label_above.html</DSUI_FilterPageHTMLTemplate>
+    <DSUI_FilterPageHTML>/pages/bootstrap/dsui/filter.html</DSUI_FilterPageHTML>
+    <DSUI_FilterPageStyleSheetOverride>none</DSUI_FilterPageStyleSheetOverride>
+
+    <DSUI_ListPageHTML>/pages/bootstrap/dsui/list_page.html</DSUI_ListPageHTML>
+    <DSUI_ListPageStyleSheetOverride>none</DSUI_ListPageStyleSheetOverride>
+    
+    
+    <!-- Simple two button pager -->    
+    <Paging_OverrideBuilderID>com.bowstreet.builders.webapp.PagingLinksBuilder</Paging_OverrideBuilderID>
+    <PagingLinks_HTMLPage>/factory/pages/mobile/paging/paging_links.html</PagingLinks_HTMLPage>
+  <!--   <PagingLinks_StyleSheet>/factory/pages/mobile/paging/paging_links_blue.css</PagingLinks_StyleSheet> -->
+    <PagingLinks_AlwaysShowLinks>true</PagingLinks_AlwaysShowLinks> 
+    <PagingLinks_StyleSheet>/factory/pages/mobile/paging/paging_links_gray.css</PagingLinks_StyleSheet>
+     
+    
+</Theme>

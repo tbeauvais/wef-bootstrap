@@ -1,0 +1,612 @@
+<Model id="bootstrap/OrdersBootstrapSample"><BuilderCallList><BuilderCall id="bc22"><BuilderDefID>com.bowstreet.builders.webapp.Theme</BuilderDefID>
+<Messages />
+<Inputs><Input name="BuilderCallEnabled">true</Input>
+<Input name="OverrideThemeProperties">false</Input>
+<Input name="ExportThemeFile">Export Theme File</Input>
+<Input name="ThemeFile">/WEB-INF/themes/bootstrap/bootstrap_basic.uitheme</Input>
+<Input name="DefaultName">bootstrap_basic</Input>
+</Inputs>
+</BuilderCall>
+<BuilderCall id="bc28"><BuilderDefID>com.bowstreet.builders.webapp.ServiceConsumer2Builder</BuilderDefID>
+<Messages />
+<Inputs><Input name="BuilderCallEnabled">true</Input>
+<Input name="UseAllOperations">true</Input>
+<Input name="OverrideInputs">false</Input>
+<Input name="CreateLookupTables">true</Input>
+<Input name="AssociateLookupTables">true</Input>
+<Input name="UseDiscardableInputVariables">false</Input>
+<Input name="UseDiscardableVariables">false</Input>
+<Input name="EnableCaching">true</Input>
+<Input name="InheritProfile">true</Input>
+<Input name="Name">orders</Input>
+<Input name="ProviderModel">samples/gettingstarted/OrdersServiceProvider</Input>
+<Input name="SelectOperations"><top><OperationSelected><Operation>addOrder</Operation>
+<OperationEnabled>true</OperationEnabled>
+<Description>Adds the specified "order" XML to the "orders" XML Variable data. &lt;i&gt;See the createOrder operation.&lt;/i&gt;
+Parameters:
+	Name:			inputs
+	!ServiceConsumer2Coordinator.service_description!	The populated "order" XML structure to be added.  Note that ORDER_ID and DATE_ORDERED are not necessary.  They will be filled in.
+
+	Name:			results
+	!ServiceConsumer2Coordinator.service_description!	The copy of the Row, with the ORDER_ID and DATE_ORDERED filled in.</Description>
+</OperationSelected>
+<OperationSelected><Operation>createOrder</Operation>
+<OperationEnabled>true</OperationEnabled>
+<Description>Creates a new XML "order" structure that is populated with the next order id. &lt;i&gt;See the addOrder operation.&lt;/i&gt;
+Parameters:
+	Name:			results
+	!ServiceConsumer2Coordinator.service_description!	A newly created XML order structure that is suitable to pass to the addOrder operation.</Description>
+</OperationSelected>
+<OperationSelected><Operation>deleteOrder</Operation>
+<OperationEnabled>true</OperationEnabled>
+<Description>Deletes a row of XML data for the specified ORDER_ID within the "order" XML.
+Parameters:
+	Name:			inputs
+	!ServiceConsumer2Coordinator.service_description!	A Row "order" XML structure that contains a Row/ORDER_ID element with the order ID to delete.</Description>
+</OperationSelected>
+<OperationSelected><Operation>getBillingOptions</Operation>
+<OperationEnabled>true</OperationEnabled>
+<Description>Gets the billing code names that can be supplied to a lookup table builder as XML.
+Parameters:
+	Name:			results
+	!ServiceConsumer2Coordinator.service_description!	The billing code names that can be supplied to a lookup table builder as XML.</Description>
+</OperationSelected>
+<OperationSelected><Operation>getOneOrder</Operation>
+<OperationEnabled>true</OperationEnabled>
+<Description>Gets a row of XML data for the specified ORDER_ID within the input XML.
+Parameters:
+	Name:			inputs
+	!ServiceConsumer2Coordinator.service_description!	A Row "order" XML structure that contains an ORDER_ID element with the order ID to fetch.
+
+	Name:			results
+	!ServiceConsumer2Coordinator.service_description!	A row of XML data for the specified ORDER_ID, or null if not found.</Description>
+</OperationSelected>
+<OperationSelected><Operation>getOrder</Operation>
+<OperationEnabled>true</OperationEnabled>
+<Description>Gets a row of XML data for the specified ORDER_ID within the input XML.
+Parameters:
+	Name:			inputs
+	!ServiceConsumer2Coordinator.service_description!	A Row "order" XML structure that contains an ORDER_ID element with the order ID to fetch.
+
+	Name:			results
+	!ServiceConsumer2Coordinator.service_description!	A row of XML data for the specified ORDER_ID, or null if not found.</Description>
+</OperationSelected>
+<OperationSelected><Operation>getOrders</Operation>
+<OperationEnabled>true</OperationEnabled>
+<Description>Gets all the order data from the XML Variable named "orders".
+Parameters:
+	Name:			results
+	!ServiceConsumer2Coordinator.service_description!	All the order data from the XML Variable named "orders".</Description>
+</OperationSelected>
+<OperationSelected><Operation>getOrdersFiltered</Operation>
+<OperationEnabled>true</OperationEnabled>
+<Description>Gets all the order data with a particular status.
+Parameters:
+	Name:			inputs
+	!ServiceConsumer2Coordinator.service_description!	Row with only the STATUS field filled in.
+
+	Name:			results
+	!ServiceConsumer2Coordinator.service_description!	All the order data with the specified STATUS, or all the data if the STATUS field is blank.</Description>
+</OperationSelected>
+<OperationSelected><Operation>searchOrders</Operation>
+<OperationEnabled>true</OperationEnabled>
+<Description>Gets all the order data from the XML Variable named "orders" which match all the non-empty inputs in the sample order.
+Parameters:
+	Name:			inputs
+	!ServiceConsumer2Coordinator.service_description!	A sample Row.  All non-empty values will be searched on.
+
+	Name:			results
+	!ServiceConsumer2Coordinator.service_description!	All the order data that matches the sample Row in the inputs.</Description>
+</OperationSelected>
+<OperationSelected><Operation>updateOrder</Operation>
+<OperationEnabled>true</OperationEnabled>
+<Description>Updates an existing order with the data specified in the "order" input.
+Parameters:
+	Name:			inputs
+	!ServiceConsumer2Coordinator.service_description!	The updated order data.</Description>
+</OperationSelected>
+</top>
+</Input>
+<Input name="OperationInputs"><OverridenInputs><InputsForOperation><Operation>addOrder</Operation>
+<Inputs><top><Input><Name>RowForCreate</Name>
+</Input>
+<Input><Name>RowForCreate.STATUS</Name>
+</Input>
+<Input><Name>RowForCreate.DATE_SHIPPED</Name>
+</Input>
+<Input><Name>RowForCreate.QUANTITY</Name>
+</Input>
+<Input><Name>RowForCreate.AMOUNT</Name>
+</Input>
+<Input><Name>RowForCreate.BILLING</Name>
+</Input>
+<Input><Name>RowForCreate.SHIPPED</Name>
+</Input>
+<Input><Name>RowForCreate.STATE</Name>
+</Input>
+</top>
+</Inputs>
+</InputsForOperation>
+<InputsForOperation><Operation>createOrder</Operation>
+<Inputs />
+</InputsForOperation>
+<InputsForOperation><Operation>deleteOrder</Operation>
+<Inputs><top><Input><Name>RowToSelectOne</Name>
+</Input>
+<Input><Name>RowToSelectOne.ORDER_ID</Name>
+</Input>
+</top>
+</Inputs>
+</InputsForOperation>
+<InputsForOperation><Operation>getBillingOptions</Operation>
+<Inputs />
+</InputsForOperation>
+<InputsForOperation><Operation>getOneOrder</Operation>
+<Inputs><top><Input><Name>RowToSelectOne</Name>
+</Input>
+<Input><Name>RowToSelectOne.ORDER_ID</Name>
+</Input>
+</top>
+</Inputs>
+</InputsForOperation>
+<InputsForOperation><Operation>getOrder</Operation>
+<Inputs><top><Input><Name>Row</Name>
+</Input>
+<Input><Name>Row.ORDER_ID</Name>
+</Input>
+<Input><Name>Row.DATE_ORDERED</Name>
+</Input>
+<Input><Name>Row.STATUS</Name>
+</Input>
+<Input><Name>Row.DATE_SHIPPED</Name>
+</Input>
+<Input><Name>Row.QUANTITY</Name>
+</Input>
+<Input><Name>Row.AMOUNT</Name>
+</Input>
+<Input><Name>Row.BILLING</Name>
+</Input>
+<Input><Name>Row.SHIPPED</Name>
+</Input>
+<Input><Name>Row.STATE</Name>
+</Input>
+</top>
+</Inputs>
+</InputsForOperation>
+<InputsForOperation><Operation>getOrders</Operation>
+<Inputs />
+</InputsForOperation>
+<InputsForOperation><Operation>getOrdersFiltered</Operation>
+<Inputs><top><Input><Name>RowForFilter</Name>
+</Input>
+<Input><Name>RowForFilter.STATUS</Name>
+</Input>
+</top>
+</Inputs>
+</InputsForOperation>
+<InputsForOperation><Operation>searchOrders</Operation>
+<Inputs><top><Input><Name>RowForFilter</Name>
+</Input>
+<Input><Name>RowForFilter.STATUS</Name>
+</Input>
+</top>
+</Inputs>
+</InputsForOperation>
+<InputsForOperation><Operation>updateOrder</Operation>
+<Inputs><top><Input><Name>Row</Name>
+</Input>
+<Input><Name>Row.ORDER_ID</Name>
+</Input>
+<Input><Name>Row.DATE_ORDERED</Name>
+</Input>
+<Input><Name>Row.STATUS</Name>
+</Input>
+<Input><Name>Row.DATE_SHIPPED</Name>
+</Input>
+<Input><Name>Row.QUANTITY</Name>
+</Input>
+<Input><Name>Row.AMOUNT</Name>
+</Input>
+<Input><Name>Row.BILLING</Name>
+</Input>
+<Input><Name>Row.SHIPPED</Name>
+</Input>
+<Input><Name>Row.STATE</Name>
+</Input>
+</top>
+</Inputs>
+</InputsForOperation>
+</OverridenInputs>
+</Input>
+<Input name="ContextVariables"><ContextVariables><ValuesForOperation><Operation>updateOrder</Operation>
+<Mappings />
+</ValuesForOperation>
+<ValuesForOperation><Operation>addOrder</Operation>
+<Mappings />
+</ValuesForOperation>
+<ValuesForOperation><Operation>getOrdersFiltered</Operation>
+<Mappings />
+</ValuesForOperation>
+<ValuesForOperation><Operation>deleteOrder</Operation>
+<Mappings />
+</ValuesForOperation>
+<ValuesForOperation><Operation>getBillingOptions</Operation>
+<Mappings />
+</ValuesForOperation>
+<ValuesForOperation><Operation>searchOrders</Operation>
+<Mappings />
+</ValuesForOperation>
+<ValuesForOperation><Operation>getOneOrder</Operation>
+<Mappings />
+</ValuesForOperation>
+<ValuesForOperation><Operation>getOrder</Operation>
+<Mappings />
+</ValuesForOperation>
+<ValuesForOperation><Operation>getOrders</Operation>
+<Mappings />
+</ValuesForOperation>
+<ValuesForOperation><Operation>createOrder</Operation>
+<Mappings />
+</ValuesForOperation>
+</ContextVariables>
+</Input>
+</Inputs>
+</BuilderCall>
+<BuilderCall id="bc4"><BuilderDefID>com.bowstreet.builders.webapp.ActionListBuilder</BuilderDefID>
+<Messages />
+<Inputs><Input name="BuilderCallEnabled">true</Input>
+<Input name="BuilderCallCategory">General</Input>
+<Input name="ReturnType">Object</Input>
+<Input name="Name">main</Input>
+<Input name="Actions"><Actions><Action><ActionType />
+<ActionName>DataServices/orders/getOrders</ActionName>
+</Action>
+<Action><ActionType />
+<ActionName>page1</ActionName>
+</Action>
+</Actions>
+</Input>
+</Inputs>
+</BuilderCall>
+<BuilderCall id="bc39"><BuilderDefID>com.bowstreet.builders.webapp.ImportedPageBuilder</BuilderDefID>
+<Messages />
+<Inputs><Input name="BuilderCallEnabled">true</Input>
+<Input name="MethodAttribute">false</Input>
+<Input name="DesignTimeImport">false</Input>
+<Input name="URLModification">None</Input>
+<Input name="AbsoluteURLs">true</Input>
+<Input name="UseJSPCode">true</Input>
+<Input name="AddBaseTag">false</Input>
+<Input name="LocalizeUrl">false</Input>
+<Input name="PreserveAppContext">true</Input>
+<Input name="RenameExisting">false</Input>
+<Input name="ReplaceExisting">false</Input>
+<Input name="FullyParse">true</Input>
+<Input name="RemoveJavaScript">false</Input>
+<Input name="LocalizationVariable">LocaleInfo</Input>
+<Input name="URL">/pages/bootstrap/sample_main_page.html</Input>
+<Input name="Name">page1</Input>
+</Inputs>
+</BuilderCall>
+<BuilderCall id="bc45"><BuilderDefID>com.bowstreet.builders.webapp.LinkBuilder</BuilderDefID>
+<Messages />
+<Inputs><Input name="BuilderCallEnabled">true</Input>
+<Input name="ShowAdvancedPostActionBehaviors">false</Input>
+<Input name="PostActionBehavior">Default</Input>
+<Input name="DefaultRefreshPageLocation">false</Input>
+<Input name="ExecuteEmbeddedScripts">false</Input>
+<Input name="IncludeEmbeddedCSS">false</Input>
+<Input name="RenderOuterPage">false</Input>
+<Input name="BreakContainment">false</Input>
+<Input name="PreservePage">false</Input>
+<Input name="KeepCurrentPage">false</Input>
+<Input name="HTMLAttributes"><HTMLAttributes><class />
+<style />
+</HTMLAttributes>
+</Input>
+<Input name="ActionType">link</Input>
+<Input name="ActionTypeUI">MODEL_LINK</Input>
+<Input name="IsModelAction">true</Input>
+<Input name="EarlyArgumentEvaluation">true</Input>
+<Input name="PageLocation"><SimplePageLocation><Page>page1</Page>
+<NameSearch>bootstrap_orders_link</NameSearch>
+</SimplePageLocation>
+</Input>
+<Input name="Action">orders_dsuiToListPage</Input>
+<Input name="ActionURL">formPage</Input>
+</Inputs>
+</BuilderCall>
+<BuilderCall id="bc49"><BuilderDefID>com.bowstreet.builders.webapp.DataServicesUserInterface</BuilderDefID>
+<Messages />
+<Inputs><Input name="BuilderCallEnabled">true</Input>
+<Input name="UseTheme">true</Input>
+<Input name="EnableDataPagingOnList">true</Input>
+<Input name="RowsPerPageOnList">5</Input>
+<Input name="PagingControlsOnList">Theme</Input>
+<Input name="UsePartialRefreshForPagingOnList">${Properties/bowstreet.Theme/DSUI_UsePartialRefresh}</Input>
+<Input name="DojoColumnResizeAndReorderOnList">true</Input>
+<Input name="EnableRowHighlightingOnList">true</Input>
+<Input name="FilterOnList">true</Input>
+<Input name="ListLinkToDetails">true</Input>
+<Input name="ListLinkToEvent">true</Input>
+<Input name="ListToUpdate">None</Input>
+<Input name="ListToDelete">No Delete Column</Input>
+<Input name="EnableDataPagingOnResults">true</Input>
+<Input name="RowsPerPageOnResults">5</Input>
+<Input name="PagingControlsOnResults">Theme</Input>
+<Input name="UsePartialRefreshForPagingOnResults">${Properties/bowstreet.Theme/DSUI_UsePartialRefresh}</Input>
+<Input name="DojoColumnResizeAndReorderOnResults">true</Input>
+<Input name="EnableRowHighlightingOnResults">true</Input>
+<Input name="SearchOnResults">false</Input>
+<Input name="ResultsLinkToDetails">true</Input>
+<Input name="ResultsLinkToEvent">true</Input>
+<Input name="ResultsToUpdate">None</Input>
+<Input name="SearchResultsToDelete">No Delete Column</Input>
+<Input name="PostUpdate">DetailsAlways</Input>
+<Input name="PostCreate">Return</Input>
+<Input name="AllButtons">All</Input>
+<Input name="CreateMainMethod">false</Input>
+<Input name="ValidationForFilter">None</Input>
+<Input name="ValidationForQuery">Both</Input>
+<Input name="RowHighlightColor">${Properties/bowstreet.Theme/DSUI_RowHightlightColor}</Input>
+<Input name="RowHighlightBackgroundColor">${Properties/bowstreet.Theme/DSUI_RowHightlightBackgroundColor}</Input>
+<Input name="EventBehavior">Both</Input>
+<Input name="ListPageURL">${Properties/bowstreet.Theme/DSUI_ListPageHTML}</Input>
+<Input name="ListPageHTMLTemplate">${Properties/bowstreet.Theme/DSUI_ListPageHTMLTemplate}</Input>
+<Input name="ListPageStyleSheetOverride">${Properties/bowstreet.Theme/DSUI_ListPageStyleSheetOverride}</Input>
+<Input name="FilterPageURL">${Properties/bowstreet.Theme/DSUI_FilterPageHTML}</Input>
+<Input name="FilterPageHTMLTemplate">${Properties/bowstreet.Theme/DSUI_FilterPageHTMLTemplate}</Input>
+<Input name="FilterPageStyleSheetOverride">${Properties/bowstreet.Theme/DSUI_FilterPageStyleSheetOverride}</Input>
+<Input name="SearchResultsPageURL">${Properties/bowstreet.Theme/DSUI_SearchResultsPageHTML}</Input>
+<Input name="SearchResultsPageHTMLTemplate">${Properties/bowstreet.Theme/DSUI_SearchPageHTMLTemplate}</Input>
+<Input name="SearchResultsPageStyleSheetOverride">${Properties/bowstreet.Theme/DSUI_SearchPageStyleSheetOverride}</Input>
+<Input name="QueryPageURL">${Properties/bowstreet.Theme/DSUI_QueryPageHTML}</Input>
+<Input name="QueryPageHTMLTemplate">${Properties/bowstreet.Theme/DSUI_QueryPageHTMLTemplate}</Input>
+<Input name="QueryPageStyleSheetOverride">${Properties/bowstreet.Theme/DSUI_QueryPageStyleSheetOverride}</Input>
+<Input name="DetailsPageURL">${Properties/bowstreet.Theme/DSUI_DetailsPageHTML}</Input>
+<Input name="DetailsPageHTMLTemplate">${Properties/bowstreet.Theme/DSUI_DetailsPageHTMLTemplate}</Input>
+<Input name="DetailsPageStyleSheetOverride">${Properties/bowstreet.Theme/DSUI_DetailsPageStyleSheetOverride}</Input>
+<Input name="NoDetailsYetPage_URL">${Properties/bowstreet.Theme/DSUI_NoDetailsYetPageHTML}</Input>
+<Input name="UpdatePageURL">${Properties/bowstreet.Theme/DSUI_UpdatePageHTML}</Input>
+<Input name="UpdatePageHTMLTemplate">${Properties/bowstreet.Theme/DSUI_UpdatePageHTMLTemplate}</Input>
+<Input name="UpdatePageStyleSheetOverride">${Properties/bowstreet.Theme/DSUI_UpdatePageStyleSheetOverride}</Input>
+<Input name="CreatePageURL">${Properties/bowstreet.Theme/DSUI_CreatePageHTML}</Input>
+<Input name="CreatePageHTMLTemplate">${Properties/bowstreet.Theme/DSUI_CreatePageHTMLTemplate}</Input>
+<Input name="CreatePageStyleSheetOverride">${Properties/bowstreet.Theme/DSUI_CreatePageStyleSheetOverride}</Input>
+<Input name="DataService">orders</Input>
+<Input name="Pages"><data><RetrieveList>true</RetrieveList>
+<Filter>false</Filter>
+<RetrieveOne>true</RetrieveOne>
+<Update>true</Update>
+<Create>true</Create>
+<Delete>true</Delete>
+</data>
+</Input>
+<Input name="StartOnPage">ToListPage</Input>
+<Input name="ListLinkToDetailsColumn">ORDER_ID</Input>
+<Input name="Name">orders_dsui</Input>
+<Input name="AllLabels"><top><resource><Key>ErrorMessage.Boolean</Key>
+<Text>Not recognized as a Boolean value.</Text>
+</resource>
+<resource><Key>ErrorMessage.Byte</Key>
+<Text>Not recognized as a Byte value.</Text>
+</resource>
+<resource><Key>ErrorMessage.DateCompare</Key>
+<Text>The date failed the following comparison:</Text>
+</resource>
+<resource><Key>ErrorMessage.DateTime</Key>
+<Text>Not recognized as a DateTime value.</Text>
+</resource>
+<resource><Key>ErrorMessage.ErrorIntro</Key>
+<Text>The following fields have errors:</Text>
+</resource>
+<resource><Key>ErrorMessage.FloatingPoint</Key>
+<Text>Not recognized as a Floating Point value.</Text>
+</resource>
+<resource><Key>ErrorMessage.Integer</Key>
+<Text>Not recognized as an Integer value.</Text>
+</resource>
+<resource><Key>ErrorMessage.Long</Key>
+<Text>Not recognized as a Long value.</Text>
+</resource>
+<resource><Key>ErrorMessage.Required</Key>
+<Text>This field is required.</Text>
+</resource>
+<resource><Key>InsertedColumnEdit</Key>
+<Text />
+</resource>
+<resource><Key>create.new.button.text</Key>
+<Text>Create</Text>
+</resource>
+<resource><Key>create.page.cancel.button.text</Key>
+<Text>Cancel</Text>
+</resource>
+<resource><Key>create.page.submit.button.text</Key>
+<Text>Submit</Text>
+</resource>
+<resource><Key>delete.checked.button.text</Key>
+<Text>Delete</Text>
+</resource>
+<resource><Key>delete.column.buttonOrLink.text</Key>
+<Text>Delete</Text>
+</resource>
+<resource><Key>delete.column.heading</Key>
+<Text />
+</resource>
+<resource><Key>details.page.back.to.list.button.text</Key>
+<Text>Back</Text>
+</resource>
+<resource><Key>details.page.delete.button.text</Key>
+<Text>Delete</Text>
+</resource>
+<resource><Key>details.page.to.update.page.button.text</Key>
+<Text>Edit</Text>
+</resource>
+<resource><Key>edit.column.button.heading</Key>
+<Text />
+</resource>
+<resource><Key>edit.column.button.text</Key>
+<Text>Edit</Text>
+</resource>
+<resource><Key>filter.page.apply.filter.button.text</Key>
+<Text>Apply Filter</Text>
+</resource>
+<resource><Key>list.page.back.to.filter.text</Key>
+<Text>Back</Text>
+</resource>
+<resource><Key>list.page.no.data.found.message</Key>
+<Text>The query did not return any data.</Text>
+</resource>
+<resource><Key>list.page.to.query.page.button.text</Key>
+<Text>Search</Text>
+</resource>
+<resource><Key>no.details.yet.page.message</Key>
+<Text>Select a record and the details will be shown here.</Text>
+</resource>
+<resource><Key>query.page.search.button.text</Key>
+<Text>Search</Text>
+</resource>
+<resource><Key>results.page.back.to.query.button.text</Key>
+<Text>Back</Text>
+</resource>
+<resource><Key>results.page.no.data.found.message</Key>
+<Text>The query did not return any data.</Text>
+</resource>
+<resource><Key>results.page.to.list.page.button.text</Key>
+<Text>View All</Text>
+</resource>
+<resource><Key>update.page.cancel.button.text</Key>
+<Text>Cancel</Text>
+</resource>
+<resource><Key>update.page.submit.button.text</Key>
+<Text>Submit</Text>
+</resource>
+<resource><Key>Row</Key>
+<Text>Row</Text>
+</resource>
+<resource><Key>Order_Id</Key>
+<Text>Order Id</Text>
+</resource>
+<resource><Key>Date_Ordered</Key>
+<Text>Date Ordered</Text>
+</resource>
+<resource><Key>Status</Key>
+<Text>Status</Text>
+</resource>
+<resource><Key>Date_Shipped</Key>
+<Text>Date Shipped</Text>
+</resource>
+<resource><Key>Quantity</Key>
+<Text>Quantity</Text>
+</resource>
+<resource><Key>Amount</Key>
+<Text>Amount</Text>
+</resource>
+<resource><Key>Billing</Key>
+<Text>Billing</Text>
+</resource>
+<resource><Key>Shipped</Key>
+<Text>Shipped</Text>
+</resource>
+<resource><Key>State</Key>
+<Text>State</Text>
+</resource>
+</top>
+</Input>
+<Input name="ModelName">factory/portletbase/dsui_base</Input>
+<Input name="SetProfiledInputValues">true</Input>
+<Input name="UniquePattern">zz</Input>
+</Inputs>
+<CacheMap><CacheEntry><CacheKey><![CDATA[$Child$orders_dsuiDirtyFlags$<IsDirty>
+  <List>true</List>
+  <SearchResults>true</SearchResults>
+</IsDirty>]]></CacheKey>
+<CacheValue><IsDirty><List>true</List>
+<SearchResults>true</SearchResults>
+</IsDirty>
+</CacheValue>
+</CacheEntry>
+</CacheMap>
+</BuilderCall>
+<BuilderCall id="bc58"><BuilderDefID>com.bowstreet.builders.webapp.ImportedPageBuilder</BuilderDefID>
+<Messages />
+<Inputs><Input name="BuilderCallEnabled">true</Input>
+<Input name="MethodAttribute">true</Input>
+<Input name="DesignTimeImport">false</Input>
+<Input name="URLModification">None</Input>
+<Input name="AbsoluteURLs">true</Input>
+<Input name="UseJSPCode">true</Input>
+<Input name="AddBaseTag">false</Input>
+<Input name="LocalizeUrl">false</Input>
+<Input name="PreserveAppContext">true</Input>
+<Input name="RenameExisting">false</Input>
+<Input name="ReplaceExisting">false</Input>
+<Input name="FullyParse">true</Input>
+<Input name="RemoveJavaScript">false</Input>
+<Input name="LocalizationVariable">LocaleInfo</Input>
+<Input name="Name">navPage</Input>
+<Input name="URL">/pages/bootstrap/nav_page.html</Input>
+</Inputs>
+</BuilderCall>
+<BuilderCall id="bc56"><BuilderDefID>com.bowstreet.builders.webapp.InsertedPageBuilder</BuilderDefID>
+<Messages />
+<Inputs><Input name="BuilderCallEnabled">true</Input>
+<Input name="ReplaceTargetElement">false</Input>
+<Input name="LoadWhenVisible">false</Input>
+<Input name="Name">nav_menu</Input>
+<Input name="PageLocation"><SimplePageLocation><Page>AllPages</Page>
+<NameSearch>nav_location</NameSearch>
+</SimplePageLocation>
+</Input>
+<Input name="Page">navPage</Input>
+</Inputs>
+</BuilderCall>
+<BuilderCall id="bc60"><BuilderDefID>com.bowstreet.builders.webapp.LinkBuilder</BuilderDefID>
+<Messages />
+<Inputs><Input name="BuilderCallEnabled">true</Input>
+<Input name="ShowAdvancedPostActionBehaviors">false</Input>
+<Input name="PostActionBehavior">Default</Input>
+<Input name="DefaultRefreshPageLocation">false</Input>
+<Input name="ExecuteEmbeddedScripts">false</Input>
+<Input name="IncludeEmbeddedCSS">false</Input>
+<Input name="RenderOuterPage">false</Input>
+<Input name="BreakContainment">false</Input>
+<Input name="PreservePage">false</Input>
+<Input name="KeepCurrentPage">false</Input>
+<Input name="HTMLAttributes"><HTMLAttributes><class />
+<style />
+</HTMLAttributes>
+</Input>
+<Input name="ActionType">link</Input>
+<Input name="ActionTypeUI">MODEL_LINK</Input>
+<Input name="IsModelAction">true</Input>
+<Input name="EarlyArgumentEvaluation">true</Input>
+<Input name="PageLocation"><SimplePageLocation><Page>AllPages</Page>
+<NameSearch>home_location</NameSearch>
+</SimplePageLocation>
+</Input>
+<Input name="Text">Home</Input>
+<Input name="Action">page1</Input>
+</Inputs>
+</BuilderCall>
+</BuilderCallList>
+<Properties><Contained>false</Contained>
+</Properties>
+<Dependencies><Dependency type="Model">samples/gettingstarted/OrdersServiceProvider</Dependency>
+<Dependency type="File">/pages/bootstrap/sample_main_page.html</Dependency>
+<Dependency type="Model">factory/portletbase/dsui_base</Dependency>
+<Dependency type="File">/pages/bootstrap/dsui/list_page.html</Dependency>
+<Dependency type="File">html_templates/bootstrap/bootstrap_label_above.html</Dependency>
+<Dependency type="File">/factory/pages/split_pager_default_top_base.html</Dependency>
+<Dependency type="File">/factory/pages/split_pager_default_bottom_base.html</Dependency>
+<Dependency type="File">/pages/bootstrap/dsui/details.html</Dependency>
+<Dependency type="File">/pages/bootstrap/dsui/create.html</Dependency>
+<Dependency type="File">/pages/bootstrap/dsui/update.html</Dependency>
+<Dependency type="File">/pages/bootstrap/nav_page.html</Dependency>
+<Dependency type="Class">com.bowstreet.builderutilities.NameSequencer</Dependency>
+<Dependency type="File">/factory/pages/split_pager_default.css</Dependency>
+<Dependency type="File">/factory/clientjavascript/wclCalendar/css/WclBaseSkinCSS.css</Dependency>
+<Dependency type="File">/factory/images/calendar/calendar_picker.gif</Dependency>
+</Dependencies>
+<ExternalProperties />
+</Model>

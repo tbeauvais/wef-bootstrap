@@ -1,0 +1,351 @@
+<!-- Sample non-Dojo mobile data definition types to use as base types with Rich Data Definition -->
+<DataDefinitions resources="com.bowstreet.builders.webapp.usertext.messages">
+
+    <BaseDefinitions>
+        <BaseDefinition>/WEB-INF/factory/data_definitions/country_codes.xml</BaseDefinition>
+        <BaseDefinition>/WEB-INF/factory/data_definitions/us_states.xml</BaseDefinition>
+    </BaseDefinitions>
+
+    <!-- Automatic mapping based on type -->
+    <SchemaTypeMappings>
+      <SchemaTypeMap type="date">base_Date</SchemaTypeMap>
+      <SchemaTypeMap type="boolean">base_CheckBox</SchemaTypeMap>
+      <SchemaTypeMap type="string">base_String</SchemaTypeMap>
+      <SchemaTypeMap type="string_enumeration">base_Select</SchemaTypeMap>
+      <SchemaTypeMap type="char">base_ShortString</SchemaTypeMap>
+        <!-- It would be nice to have these <SchemaTypeMap type="dateTime"></SchemaTypeMap> <SchemaTypeMap type="time"></SchemaTypeMap> -->
+      <SchemaTypeMap type="integer">base_Integer_Internal</SchemaTypeMap>
+      <SchemaTypeMap type="int">base_Integer_Internal</SchemaTypeMap>
+      <SchemaTypeMap type="byte">base_Integer_Internal</SchemaTypeMap>
+      <SchemaTypeMap type="short">base_Integer_Internal</SchemaTypeMap>
+      <SchemaTypeMap type="long">base_Integer_Internal</SchemaTypeMap>
+      <SchemaTypeMap type="double">base_FloatingPoint</SchemaTypeMap>
+      <SchemaTypeMap type="float">base_FloatingPoint</SchemaTypeMap>
+    <SchemaTypeMap type="decimal">base_Integer_Internal</SchemaTypeMap>
+    </SchemaTypeMappings>
+
+    <!-- Automatic mapping based on builder control used from palette-->
+    <ControlBuilderMappings>
+        <ControlBuilderMap type="com.bowstreet.builders.webapp.CheckBoxBuilder">base_CheckBox</ControlBuilderMap>
+        <ControlBuilderMap type="com.bowstreet.builders.webapp.DojoCheckBoxBuilder">base_CheckBox</ControlBuilderMap>
+        <ControlBuilderMap type="com.bowstreet.builders.webapp.TextInputBuilder">base_String</ControlBuilderMap>
+        <ControlBuilderMap type="com.bowstreet.builders.webapp.RadioButtonGroupBuilder">base_RadioGroup</ControlBuilderMap>
+        <ControlBuilderMap type="com.bowstreet.builders.webapp.DojoRadioButtonGroupBuilder">base_RadioGroup</ControlBuilderMap>
+        <ControlBuilderMap type="com.bowstreet.builders.webapp.SelectBuilder">base_Select</ControlBuilderMap>
+        <ControlBuilderMap type="com.bowstreet.builders.webapp.DojoSelectBuilder">base_Select</ControlBuilderMap>
+        <ControlBuilderMap type="com.bowstreet.builders.webapp.TextAreaBuilder">base_TextArea</ControlBuilderMap>
+        <ControlBuilderMap type="com.bowstreet.builders.webapp.CalendarPickerBuilder">base_Date</ControlBuilderMap>
+        <ControlBuilderMap type="com.bowstreet.builders.webapp.DojoDateTextBoxBuilder">base_Date</ControlBuilderMap>
+    </ControlBuilderMappings>
+
+
+    <!-- for variable-length Strings, adds case-insensitive sorting -->
+     <DataDefinition name="base_String">
+        <ReadableName resource_key="BaseString">String</ReadableName>
+        <Description>Variable-length Strings</Description>
+        <PotentialColumnSorting>Case Insensitive String</PotentialColumnSorting>
+     </DataDefinition>
+
+    <DataDefinition name="readOnly_String">
+        <ReadableName resource_key="ReadOnlyString">Read-only String</ReadableName>
+        <Description>Read-only Strings</Description>
+        <ReadOnly>true</ReadOnly>
+        <PotentialColumnSorting>Case Insensitive String</PotentialColumnSorting>
+    </DataDefinition>
+
+    <!-- for short strings like CHAR db fields that should be center aligned, e.g. a currency code or alphanumeric department
+        id -->
+     <DataDefinition name="base_ShortString">
+     <Description>Short strings like CHAR db fields that should be center aligned</Description>
+        <ReadableName resource_key="BaseShortString">Short string</ReadableName>
+        <ColumnAlignment>center</ColumnAlignment>
+        <PotentialColumnSorting>Case Insensitive String</PotentialColumnSorting>
+     </DataDefinition>
+
+    <!-- for integers -->
+     <DataDefinition name="base_Integer_Internal">
+        <ColumnAlignment>right</ColumnAlignment>
+     </DataDefinition>
+
+     <DataDefinition name="base_Integer" base="base_Integer_Internal">
+        <ReadableName resource_key="BaseInteger">Integer</ReadableName>
+        <Description>Integer</Description>
+        <PotentialColumnSorting>Numbers</PotentialColumnSorting>
+        <DataType>integer</DataType>
+     </DataDefinition>
+
+    <!-- for floats, adds numeric sorting -->
+     <DataDefinition name="base_FloatingPoint">
+        <ReadableName resource_key="BaseFloatingPoint">Floating Point</ReadableName>
+        <Description>Floating point, adds numeric sorting</Description>
+        <PotentialColumnSorting>Numbers</PotentialColumnSorting>
+        <ColumnAlignment>right</ColumnAlignment>
+        <DataType>float</DataType>
+        <PotentialColumnSorting>Numbers</PotentialColumnSorting>
+     </DataDefinition>
+
+    <!-- date - this assumes internal date format is a ISO-8601 string yyyy-mm-dd (e.g. 2007-06-01) -->
+     <DataDefinition name="base_Date">
+        <ReadableName resource_key="BaseDate">Date: yyyy-MM-dd</ReadableName>
+        <Description>Date - this assumes internal date format is a ISO-8601 string yyyy-mm-dd</Description>
+      <ValidateExpr>Date(yyyy-MM-dd)</ValidateExpr>
+      <PotentialColumnSorting>Date</PotentialColumnSorting>
+      <FormatExpr before_resource="Format(yyyy-MM-dd$" after_resource=")" resource_key="BaseDate_DisplayFormat">MM/dd/yyyy</FormatExpr>
+      <TranslateExpr>Translate(yyyy-MM-dd$MM/dd/yyyy)</TranslateExpr>
+
+      <!-- Use FormattedTextBuilder so we can format just the display value since the Dojo picker formats the input on the client -->
+      <DisplayControl>com.bowstreet.builders.webapp.FormattedTextBuilder</DisplayControl>
+      <DisplayInputs>
+          <Inputs>
+              <Input name="Type">Date</Input>
+              <Input name="Editable">No</Input>
+              <Input name="FormatExpression" before_resource="Format(yyyy-MM-dd$" after_resource=")" resource_key="BaseDate_DisplayFormat">MM/dd/yyyy</Input>
+          </Inputs>
+      </DisplayInputs>
+    </DataDefinition>
+
+    <!-- Sample to show how to convert MM/dd/yyyy (e.g. 06/01/2007) internal date format to a ISO-8601 string yyyy-mm-dd (e.g. 2007-06-01)  required by the Dojo DateTextBox -->
+     <DataDefinition name="base_DateConvert">
+      <ReadableName resource_key="BaseDateConvert">Date: Converts MM/dd/yyyy to yyyy-mm-dd</ReadableName>
+      <Description>Date - Converts MM/dd/yyyy (e.g. 06/01/2007) internal date format to a ISO-8601 string yyyy-mm-dd</Description>
+        <TranslateExpr before_resource="Translate(MM/dd/yyyy$" after_resource=")"  resource_key="ToFormatOfBaseDateConvert">yyyy-MM-dd</TranslateExpr>
+        <ValidateExpr>Date(MM/dd/yyyy)</ValidateExpr>
+      <PotentialColumnSorting>Date</PotentialColumnSorting>
+      <!-- Use FormattedTextBuilder so we can format just the display value since the Dojo picker formats the input on the client -->
+      <DisplayControl>com.bowstreet.builders.webapp.FormattedTextBuilder</DisplayControl>
+      <DisplayInputs>
+          <Inputs>
+              <Input name="Type">Date</Input>
+              <Input name="Editable">No</Input>
+              <Input name="FormatExpression"  before_resource="Format(MM/dd/yyyy$" after_resource=")" resource_key="ToFormatOfBaseDateConvert">yyyy-MM-dd</Input>
+          </Inputs>
+      </DisplayInputs>
+    </DataDefinition>
+
+    <!-- date - this assumes internal date format is yyyy-MM-dd -->
+    <DataDefinition name="readOnly_Date">
+        <ReadableName resource_key="ReadOnlyDate">Read-only Date: yyyy-MM-dd</ReadableName>
+        <Description>Read-only Date - assumes internal date format is yyyy-MM-dd</Description>
+        <FormatExpr before_resource="Format(yyyy-MM-dd$" after_resource=")" resource_key="BaseDate_DisplayFormat">MM/dd/yyyy</FormatExpr>
+        <TranslateExpr before_resource="Translate(yyyy-MM-dd$" after_resource=")" resource_key="BaseDate_DisplayFormat">MM/dd/yyyy</TranslateExpr>
+        <ValidateExpr>Date(yyyy-MM-dd)</ValidateExpr>
+        <PotentialColumnSorting>Date</PotentialColumnSorting>
+        <ReadOnly>true</ReadOnly>
+    </DataDefinition>
+
+
+    <!-- Domino date - this assumes internal date format is MM/dd/yy hh:mm:ss a -->
+     <DataDefinition name="base_DefaultDominoDate">
+        <ReadableName resource_key="BaseDominoDate">Date from Domino: MM/dd/yy hh:mm:ss a</ReadableName>
+        <Description>Domino date - assumes internal date format is MM/dd/yy hh:mm:ss a</Description>
+        <FormatExpr before_resource="Format(MM/dd/yyyy hh:mm:ss a$" after_resource=")" resource_key="BaseDate_DisplayFormat">MM/dd/yyyy
+        </FormatExpr>
+        <TranslateExpr before_resource="Translate(MM/dd/yyyy hh:mm:ss a$" after_resource=")"  resource_key="BaseDate_DisplayFormat">MM/dd/yyyy</TranslateExpr>
+        <ValidateExpr>Date(MM/dd/yyyy hh:mm:ss a)</ValidateExpr>
+        <PotentialColumnSorting>Date</PotentialColumnSorting>
+    </DataDefinition>
+
+    <!-- formatting and sorting for currency values.  these formats are generally localized -->
+     <DataDefinition name="base_Currency">
+        <ReadableName resource_key="BaseCurrency">Currency: #,###.00</ReadableName>
+        <Description>Formatting and sorting for currency values</Description>
+        <ColumnAlignment>right</ColumnAlignment>
+        <PotentialColumnSorting>Numbers</PotentialColumnSorting>
+        <!-- Use FormattedTextBuilder so we can format just the display value since the Dojo picker formats the input on
+            the client -->
+        <DisplayControl>com.bowstreet.builders.webapp.FormattedTextBuilder</DisplayControl>
+        <DisplayInputs>
+            <Inputs>
+                <Input name="Type">Number</Input>
+                <Input name="Editable">No</Input>
+                <Input name="FormatExpression" before_resource="NumberFormat(" resource_key="Currency_FormatExpr" after_resource=")">#,###.00</Input>
+            </Inputs>
+        </DisplayInputs>
+    </DataDefinition>
+
+    <!-- base percentage type -->
+    <DataDefinition name="base_Percentage">
+        <ReadableName resource_key="BasePercentage">Decimal:  #,##0.0</ReadableName>
+        <Description>Percentage type</Description>
+        <ColumnAlignment>right</ColumnAlignment>
+        <FormatExpr before_resource="NumberFormat(" resource_key="Percentage_FormatExpr" after_resource=")">#,##0.0
+        </FormatExpr>
+        <DataEntryControl>com.bowstreet.builders.webapp.TextInputBuilder</DataEntryControl>
+        <DataEntryInputs>
+            <Inputs>
+                <Input name="HTMLAttributes">
+                    <HTMLAttributes>
+                        <size>5</size>
+                        <maxlength>5</maxlength>
+                    </HTMLAttributes>
+                </Input>
+            </Inputs>
+        </DataEntryInputs>
+        <PotentialColumnSorting>Numbers</PotentialColumnSorting>
+    </DataDefinition>
+
+    <!-- date with year only and sortable -->
+    <DataDefinition name="base_Year">
+        <ReadableName resource_key="BaseYear">Year only</ReadableName>
+        <Description>Date with year only</Description>
+        <DataType>year</DataType>
+        <PotentialColumnSorting>Numbers</PotentialColumnSorting>
+    </DataDefinition>
+
+    <!-- text area input -->
+     <DataDefinition name="base_TextArea">
+        <ReadableName resource_key="BaseTextArea">TextArea input</ReadableName>
+        <Description>Long string that uses a TextArea input for a Data Entry control</Description>
+        <DataEntryControl>com.bowstreet.builders.webapp.TextAreaBuilder</DataEntryControl>
+        <DataEntryInputs>
+            <Inputs>
+                <Input name="Wrap">virtual</Input>
+                <Input name="Cols">25</Input>
+                <Input name="Rows">5</Input>
+            </Inputs>
+        </DataEntryInputs>
+     </DataDefinition>
+
+    <!-- for URLs -->
+    <DataDefinition name="base_URL">
+        <ReadableName resource_key="BaseURL">URL</ReadableName>
+        <Description>URL Active Text</Description>
+        <DisplayControl>com.bowstreet.builders.webapp.ActiveTextBuilder</DisplayControl>
+        <DisplayInputs>
+            <Inputs>
+                <Input name="Scheme"></Input>
+            </Inputs>
+        </DisplayInputs>
+        <PotentialColumnSorting>Case Insensitive String</PotentialColumnSorting>
+    </DataDefinition>
+
+    <!-- for phone numbers -->
+    <DataDefinition name="base_PhoneNumber">
+        <ReadableName resource_key="BasePhoneNumber">Phone Number</ReadableName>
+        <Description>Phone Number Active Text</Description>
+        <DisplayControl>com.bowstreet.builders.webapp.ActiveTextBuilder</DisplayControl>
+        <DisplayInputs>
+            <Inputs>
+                <Input name="Scheme">tel:</Input>
+            </Inputs>
+        </DisplayInputs>
+        <PotentialColumnSorting>Case Insensitive String</PotentialColumnSorting>
+    </DataDefinition>
+
+    <!-- for SMS messages -->
+    <DataDefinition name="base_SMS">
+        <ReadableName resource_key="BaseSMS">SMS</ReadableName>
+        <Description>SMS Active Text</Description>
+        <DisplayControl>com.bowstreet.builders.webapp.ActiveTextBuilder</DisplayControl>
+        <DisplayInputs>
+            <Inputs>
+                <Input name="Scheme">sms:</Input>
+            </Inputs>
+        </DisplayInputs>
+        <PotentialColumnSorting>Case Insensitive String</PotentialColumnSorting>
+    </DataDefinition>
+     <!-- long input for email address -->
+     <DataDefinition name="base_Email">
+        <ReadableName resource_key="BaseEmail">E-Mail Address</ReadableName>
+        <Description>Input for email address</Description>
+        <DisplayControl>com.bowstreet.builders.webapp.ActiveTextBuilder</DisplayControl>
+        <DisplayInputs>
+            <Inputs>
+                <Input name="Scheme">mailto:</Input>
+            </Inputs>
+        </DisplayInputs>
+        <DataEntryControl>com.bowstreet.builders.webapp.TextInputBuilder</DataEntryControl>
+        <DataEntryInputs>
+            <Inputs>
+                <Input name="HTMLAttributes">
+                    <HTMLAttributes>
+                        <size>45</size>
+                    </HTMLAttributes>
+                </Input>
+            </Inputs>
+        </DataEntryInputs>
+        <PotentialColumnSorting>Case Insensitive String</PotentialColumnSorting>
+     </DataDefinition>
+
+    <!-- password text input -->
+    <DataDefinition name="base_Password">
+        <ReadableName resource_key="BasePassword">Password</ReadableName>
+        <Description>Input for passwords</Description>
+        <DataEntryControl>com.bowstreet.builders.webapp.TextInputBuilder</DataEntryControl>
+        <DataEntryInputs>
+            <Inputs>
+                <Input name="Type">Password</Input>
+            </Inputs>
+        </DataEntryInputs>
+    </DataDefinition>
+
+    <!-- applies checkbox builder for data entry (assumes true/false values -->
+    <DataDefinition name="base_CheckBox">
+        <ReadableName resource_key="BaseCheckbox">Boolean (Checkbox)</ReadableName>
+        <Description>Checkbox builder for data entry (assumes true/false values)</Description>
+        <DataEntryControl>com.bowstreet.builders.webapp.CheckBoxBuilder</DataEntryControl>
+        <PotentialColumnSorting>Case Insensitive String</PotentialColumnSorting>
+    </DataDefinition>
+
+    <!-- applies Select builder for data entry, user should provide lookup table or choices -->
+    <DataDefinition name="base_Select">
+        <ReadableName resource_key="BaseSelect">Select (drop down)</ReadableName>
+        <Description>Select builder for data entry, user should provide lookup table or choices</Description>
+        <DataEntryControl>com.bowstreet.builders.webapp.SelectBuilder</DataEntryControl>
+        <PotentialColumnSorting>Case Insensitive String</PotentialColumnSorting>
+    </DataDefinition>
+
+    <!-- applies Radio Button Group builder for data entry, user should provide lookup table or choices -->
+    <DataDefinition name="base_RadioGroup">
+        <ReadableName resource_key="BaseRdaioGroup">Radio Button Group (Vertical)</ReadableName>
+        <Description>Radio Button Group builder for data entry, user should provide lookup table or choices
+        </Description>
+        <DataEntryControl>com.bowstreet.builders.webapp.RadioButtonGroupBuilder</DataEntryControl>
+        <PotentialColumnSorting>Case Insensitive String</PotentialColumnSorting>
+    </DataDefinition>
+
+    <!-- applies Radio Button Group builder for data entry, user should provide lookup table or choices -->
+    <DataDefinition name="base_RadioGroup_Horizontal">
+        <ReadableName resource_key="BaseRadioGroupHorizontal">Radio Button Group (Horizontal)</ReadableName>
+        <Description>Radio Button Group builder for data entry, user should provide lookup table or choices
+        </Description>
+        <DataEntryControl>com.bowstreet.builders.webapp.RadioButtonGroupBuilder</DataEntryControl>
+        <DataEntryInputs>
+            <Inputs>
+                <Input name="Orientation">horizontal</Input>
+            </Inputs>
+        </DataEntryInputs>
+        <PotentialColumnSorting>Case Insensitive String</PotentialColumnSorting>
+    </DataDefinition>
+
+    <!-- For display of image from URL -->
+    <DataDefinition name="base_Image">
+     <ReadableName resource_key="BaseImage">Image Display</ReadableName>
+     <Description>Display Image from URL</Description>
+       <DataEntryControl>com.bowstreet.builders.webapp.ImageBuilder</DataEntryControl>
+       <DataEntryInputs>
+           <Inputs>
+           </Inputs>
+       </DataEntryInputs>
+     <DisplayControl>com.bowstreet.builders.webapp.ImageBuilder</DisplayControl>
+     <DisplayInputs>
+         <Inputs>
+         </Inputs>
+     </DisplayInputs>
+    </DataDefinition>
+
+    <!-- lookup table with ISO 3166 country codes -->
+     <DataDefinition name="base_ISOCountryCodes" base="base_ISOCountryCodesLookup">
+        <Description>Lookup table with ISO 3166 country codes</Description>
+        <!-- The list is in separate XML file -->
+        <PotentialColumnSorting>Case Insensitive String</PotentialColumnSorting>
+     </DataDefinition>
+
+    <!-- lookup table with US states -->
+     <DataDefinition name="base_US_States" base="base_US_StatesLookup">
+        <Description>Lookup table with US states</Description>
+        <!-- The list is in separate XML file -->
+        <PotentialColumnSorting>Case Insensitive String</PotentialColumnSorting>
+     </DataDefinition>
+
+</DataDefinitions>
