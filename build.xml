@@ -1,0 +1,25 @@
+<project name="WEFBootstrap" default="dist" basedir=".">
+    <description>
+        Create zip file containing Bootstrap artifacts suitable for WEF import
+    </description>
+
+ <target name="properties">
+   <property name="dest" location="."/>
+ </target>
+
+  <target name="dist" depends="properties" description="generate the distribution" >
+  	<zip destfile="${dest}/wef_bootstrap.zip">
+	  	<fileset dir="${dest}/WebContent">
+	  	  <include name="WEB-INF/models/bootstrap/*.model"/>
+	      <include name="WEB-INF/rich_data_definition/bootstrap/*.xml"/>
+          <include name="WEB-INF/themes/bootstrap/*.uitheme"/>
+	      <include name="html_templates/bootstrap/*.html"/>
+	      <include name="pages/bootstrap/**/*.html"/>
+	  	</fileset>	  	
+	  </zip>  	
+  </target>
+
+  <target name="clean" depends="properties" description="clean up" >
+    <delete file="${dest}/wef_bootstrap.zip"/>
+  </target>
+</project>

@@ -4,6 +4,7 @@
 .project
 .bowstreet
 log/*.log
+wef_bootstrap.zip
 ~temp/
 **/.DS_Store
 
