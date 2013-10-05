@@ -1,7 +1,7 @@
 wef-bootstrap
 =============
 
-Integrates IBM Web Experience Factory with Bootstrap 
+Integrates [IBM Web Experience Factory](http://www-03.ibm.com/software/products/us/en/ibmwebexpefact/) with [Bootstrap](http://getbootstrap.com/) 
 
 This project contains a WEF Theme that shows how to integrate WEF with Bootstrap. This includes the theme file, data definition, html template, DSUI base pages, and a sample model. 
 The theme gives you basic DSUI functionality for list, details, and edits pages.
