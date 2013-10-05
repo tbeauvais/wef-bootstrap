@@ -8,7 +8,7 @@
  </target>
 
   <target name="dist" depends="properties" description="generate the distribution" >
-  	<zip destfile="${dest}/wef_bootstrap.zip">
+  	<zip destfile="${dest}/output/wef_bootstrap.zip">
 	  	<fileset dir="${dest}/WebContent">
 	  	  <include name="WEB-INF/models/bootstrap/*.model"/>
 	      <include name="WEB-INF/rich_data_definition/bootstrap/*.xml"/>
