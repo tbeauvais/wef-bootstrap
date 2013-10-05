@@ -15,6 +15,13 @@ Future work needed:
 * Input Controls (e.g. Date picker)
 * Navigation Builder
 
+### Installation
+
+Download the [wef_bootstrap.zip](/output/wef_bootstrap.zip) or build it from source. To build from source you will need to run 'ant' from the project folder.
+
+Once you have the wef_bootstrap.zip file use the Import > Web Experience Factory Archive to add to an existing project.
+
+
 ### Contributors Welcome
 If you would like to contribute you can clone this repo, and then submit a pull request for bug fixes or features.
 
