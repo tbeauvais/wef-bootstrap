@@ -589,6 +589,119 @@ Parameters:
 <Input name="Action">page1</Input>
 </Inputs>
 </BuilderCall>
+<BuilderCall id="bc63"><BuilderDefID>com.bowstreet.builders.webapp.pageautomation.DataFieldSettings</BuilderDefID>
+<Messages />
+<Inputs><Input name="BuilderCallEnabled">true</Input>
+<Input name="AllPages">true</Input>
+<Input name="AllPageRadio">All</Input>
+<Input name="Pages"><data />
+</Input>
+<Input name="DisplayBehavior"><top><DispInfo><Name>STATUS</Name>
+<Label>[Status]</Label>
+<Hide>[Do Not Change]</Hide>
+<DataType>base_Select</DataType>
+<LookupTable />
+<Sort>[Off]</Sort>
+</DispInfo>
+<DispInfo><Name>DATE_SHIPPED</Name>
+<Label>[Date Shipped]</Label>
+<Hide>[Do Not Change]</Hide>
+<DataType>readOnly_Date</DataType>
+<LookupTable />
+<Sort>[Off]</Sort>
+</DispInfo>
+<DispInfo><Name>QUANTITY</Name>
+<Label>[Quantity]</Label>
+<Hide>[Do Not Change]</Hide>
+<DataType>base_Integer_Internal</DataType>
+<LookupTable />
+<Sort>[Off]</Sort>
+</DispInfo>
+<DispInfo><Name>AMOUNT</Name>
+<Label>[Amount]</Label>
+<Hide>[Do Not Change]</Hide>
+<DataType>base_FloatingPoint</DataType>
+<LookupTable />
+<Sort>[Off]</Sort>
+</DispInfo>
+<DispInfo><Name>BILLING</Name>
+<Label>[Billing]</Label>
+<Hide>[Do Not Change]</Hide>
+<DataType>base_Select</DataType>
+<LookupTable>getBillingOptionsLookup</LookupTable>
+<Sort>[Off]</Sort>
+</DispInfo>
+<DispInfo><Name>SHIPPED</Name>
+<Label>[Shipped]</Label>
+<Hide>[Do Not Change]</Hide>
+<DataType>base_CheckBox</DataType>
+<LookupTable />
+<Sort>[Off]</Sort>
+</DispInfo>
+<DispInfo><Name>STATE</Name>
+<Label>[State]</Label>
+<Hide>[Do Not Change]</Hide>
+<DataType>base_Select</DataType>
+<LookupTable>states</LookupTable>
+<Sort>[Off]</Sort>
+</DispInfo>
+<DispInfo><Name>ORDER_ID</Name>
+<Label>[Order Id]</Label>
+<Hide>[Do Not Change]</Hide>
+<DataType>base_String</DataType>
+<LookupTable />
+<Sort>[Off]</Sort>
+</DispInfo>
+<DispInfo><Name>DATE_ORDERED</Name>
+<Label>[Date Ordered]</Label>
+<Hide>[Do Not Change]</Hide>
+<DataType>readOnly_Date</DataType>
+<LookupTable />
+<Sort>[Off]</Sort>
+</DispInfo>
+</top>
+</Input>
+<Input name="ValidationBehavior"><top><ValidationInfo><Name>STATUS</Name>
+<ValidationOp>[Do Not Change]</ValidationOp>
+<Required>[Required]</Required>
+</ValidationInfo>
+<ValidationInfo><Name>DATE_SHIPPED</Name>
+<ValidationOp>[Do Not Change]</ValidationOp>
+<Required>[NotRequired]</Required>
+</ValidationInfo>
+<ValidationInfo><Name>QUANTITY</Name>
+<ValidationOp>[Do Not Change]</ValidationOp>
+<Required>[Required]</Required>
+</ValidationInfo>
+<ValidationInfo><Name>AMOUNT</Name>
+<ValidationOp>[Do Not Change]</ValidationOp>
+<Required>[Required]</Required>
+</ValidationInfo>
+<ValidationInfo><Name>BILLING</Name>
+<ValidationOp>[Do Not Change]</ValidationOp>
+<Required>[Required]</Required>
+</ValidationInfo>
+<ValidationInfo><Name>SHIPPED</Name>
+<ValidationOp>[Do Not Change]</ValidationOp>
+<Required>[NotRequired]</Required>
+</ValidationInfo>
+<ValidationInfo><Name>STATE</Name>
+<ValidationOp>[Do Not Change]</ValidationOp>
+<Required>[Required]</Required>
+</ValidationInfo>
+<ValidationInfo><Name>ORDER_ID</Name>
+<ValidationOp>[Do Not Change]</ValidationOp>
+<Required>[Required]</Required>
+</ValidationInfo>
+<ValidationInfo><Name>DATE_ORDERED</Name>
+<ValidationOp>[Do Not Change]</ValidationOp>
+<Required>[Required]</Required>
+</ValidationInfo>
+</top>
+</Input>
+<Input name="DefaultName">All pages</Input>
+</Inputs>
+</BuilderCall>
 </BuilderCallList>
 <Properties><Contained>false</Contained>
 </Properties>
@@ -605,8 +718,6 @@ Parameters:
 <Dependency type="File">/pages/bootstrap/nav_page.html</Dependency>
 <Dependency type="Class">com.bowstreet.builderutilities.NameSequencer</Dependency>
 <Dependency type="File">/factory/pages/split_pager_default.css</Dependency>
-<Dependency type="File">/factory/clientjavascript/wclCalendar/css/WclBaseSkinCSS.css</Dependency>
-<Dependency type="File">/factory/images/calendar/calendar_picker.gif</Dependency>
 </Dependencies>
 <ExternalProperties />
 </Model>
